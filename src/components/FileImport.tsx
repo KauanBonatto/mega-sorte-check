@@ -87,9 +87,9 @@ export function FileImport({ onImportGames }: FileImportProps) {
         </div>
         <pre className="text-xs text-muted-foreground font-mono bg-background/50 p-3 rounded overflow-x-auto">
 {`# Cada linha é um jogo
-01, 15, 23, 34, 45, 60
-02 16 24 35 46 59
-03-17-25-36-47-58`}
+01 - 15 - 23 - 34 - 45 - 60
+02 - 16 - 24 - 35 - 46 - 59
+03 - 17 - 25 - 36 - 47 - 58`}
         </pre>
       </div>
     </div>

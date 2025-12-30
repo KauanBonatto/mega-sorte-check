@@ -52,7 +52,7 @@ export function GamesInput({ games, onAddGame, onRemoveGame, onClearGames }: Gam
       <div className="flex flex-col sm:flex-row gap-4">
         <Input
           type="text"
-          placeholder="Ex: 01, 15, 23, 34, 45, 60"
+          placeholder="Ex: 01 - 15 - 23 - 34 - 45 - 60"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={handleKeyDown}
@@ -91,7 +91,7 @@ export function GamesInput({ games, onAddGame, onRemoveGame, onClearGames }: Gam
       )}
 
       <p className="text-muted-foreground text-sm text-center">
-        Adicione jogos com 6 ou mais números separados por vírgula ou espaço
+        Adicione jogos com 6 ou mais números separados por traço (ex: 01 - 15 - 23 - 34 - 45 - 60)
       </p>
     </div>
   );
