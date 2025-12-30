@@ -35,5 +35,5 @@ Sempre confira os resultados nos canais oficiais.
 
 👨‍💻 Autor
 
-Desenvolvido por Kauan Bonatto
+Desenvolvido por Kauan Bonatto.
 Contribuições, sugestões e melhorias são bem-vindas.
