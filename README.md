@@ -2,9 +2,9 @@
 
 Aplicação web desenvolvida para verificar apostas da Mega da Virada 2025, comparando os números informados pelo usuário com os números oficialmente sorteados, indicando a quantidade de acertos e a faixa de premiação correspondente.
 
-O objetivo do projeto é oferecer uma interface simples, rápida e confiável para conferência de jogos, sem necessidade de cálculos manuais.
+O objetivo do projeto é oferecer uma interface simples, rápida e confiável para conferência de jogos, sem necessidade de verificações manuais.
 
-<img width="1915" height="957" alt="Captura de Tela 2025-12-30 às 14 37 56" src="https://github.com/user-attachments/assets/d7bcdc5d-b183-4849-86a1-29b5ab67073c" />
+<img width="1915" height="957" alt="Captura de Tela 2025-12-30 às 15 11 51" src="https://github.com/user-attachments/assets/860c5c4f-03ac-4237-9780-a4119b0a435f" />
 
 📌 Funcionalidades
 
