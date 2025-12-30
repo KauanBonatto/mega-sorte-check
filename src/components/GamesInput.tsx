@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Trash2, Plus, Ticket } from "lucide-react";
+import { Trash2, Plus, Ticket, Sparkles } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 interface GamesInputProps {
@@ -14,6 +14,23 @@ interface GamesInputProps {
 export function GamesInput({ games, onAddGame, onRemoveGame, onClearGames }: GamesInputProps) {
   const [inputValue, setInputValue] = useState("");
   const { toast } = useToast();
+
+  const generateRandomGame = () => {
+    const numbers: number[] = [];
+    while (numbers.length < 6) {
+      const randomNum = Math.floor(Math.random() * 60) + 1;
+      if (!numbers.includes(randomNum)) {
+        numbers.push(randomNum);
+      }
+    }
+    const sortedNumbers = numbers.sort((a, b) => a - b);
+    onAddGame(sortedNumbers);
+    setInputValue("");
+    toast({
+      title: "Jogo aleatório adicionado!",
+      description: `Jogo #${games.length + 1} com números: ${sortedNumbers.map(n => n.toString().padStart(2, "0")).join(" - ")}`,
+    });
+  };
 
   const handleAddGame = () => {
     if (!inputValue.trim()) {
@@ -118,18 +135,28 @@ export function GamesInput({ games, onAddGame, onRemoveGame, onClearGames }: Gam
         )}
       </div>
 
-      <div className="flex flex-col sm:flex-row gap-4">
-        <Input
-          type="text"
-          placeholder="Ex: 01 - 15 - 23 - 34 - 45 - 60"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          onKeyDown={handleKeyDown}
-          className="flex-1 bg-secondary border-border text-foreground placeholder:text-muted-foreground"
-        />
-        <Button onClick={handleAddGame} variant="secondary" className="shrink-0">
-          <Plus className="w-4 h-4 mr-2" />
-          Adicionar
+      <div className="flex flex-col gap-4">
+        <div className="flex flex-col sm:flex-row gap-4">
+          <Input
+            type="text"
+            placeholder="Ex: 01 - 15 - 23 - 34 - 45 - 60"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            onKeyDown={handleKeyDown}
+            className="flex-1 bg-secondary border-border text-foreground placeholder:text-muted-foreground"
+          />
+          <Button onClick={handleAddGame} variant="secondary" className="shrink-0">
+            <Plus className="w-4 h-4 mr-2" />
+            Adicionar
+          </Button>
+        </div>
+        <Button 
+          onClick={generateRandomGame} 
+          variant="outline" 
+          className="w-full sm:w-auto"
+        >
+          <Sparkles className="w-4 h-4 mr-2" />
+          Gerar Jogo Aleatório
         </Button>
       </div>
 

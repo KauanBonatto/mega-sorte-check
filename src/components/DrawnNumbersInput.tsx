@@ -14,6 +14,23 @@ export function DrawnNumbersInput({ drawnNumbers, onSetDrawnNumbers }: DrawnNumb
   const [inputValue, setInputValue] = useState("");
   const { toast } = useToast();
 
+  const generateRandomNumbers = () => {
+    const numbers: number[] = [];
+    while (numbers.length < 6) {
+      const randomNum = Math.floor(Math.random() * 60) + 1;
+      if (!numbers.includes(randomNum)) {
+        numbers.push(randomNum);
+      }
+    }
+    const sortedNumbers = numbers.sort((a, b) => a - b);
+    onSetDrawnNumbers(sortedNumbers);
+    setInputValue("");
+    toast({
+      title: "Números aleatórios gerados!",
+      description: `Números: ${sortedNumbers.map(n => n.toString().padStart(2, "0")).join(" - ")}`,
+    });
+  };
+
   const handleSubmit = () => {
     if (!inputValue.trim()) {
       toast({
@@ -96,17 +113,27 @@ export function DrawnNumbersInput({ drawnNumbers, onSetDrawnNumbers }: DrawnNumb
         <h2 className="text-xl font-semibold text-foreground">Números Sorteados</h2>
       </div>
 
-      <div className="flex flex-col sm:flex-row gap-4">
-        <Input
-          type="text"
-          placeholder="Ex: 01 - 15 - 23 - 34 - 45 - 60"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          onKeyDown={handleKeyDown}
-          className="flex-1 bg-secondary border-border text-foreground placeholder:text-muted-foreground"
-        />
-        <Button onClick={handleSubmit} className="shrink-0">
-          Confirmar
+      <div className="flex flex-col gap-4">
+        <div className="flex flex-col sm:flex-row gap-4">
+          <Input
+            type="text"
+            placeholder="Ex: 01 - 15 - 23 - 34 - 45 - 60"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            onKeyDown={handleKeyDown}
+            className="flex-1 bg-secondary border-border text-foreground placeholder:text-muted-foreground"
+          />
+          <Button onClick={handleSubmit} className="shrink-0">
+            Confirmar
+          </Button>
+        </div>
+        <Button 
+          onClick={generateRandomNumbers} 
+          variant="outline" 
+          className="w-full sm:w-auto"
+        >
+          <Sparkles className="w-4 h-4 mr-2" />
+          Gerar Aleatório
         </Button>
       </div>
 
