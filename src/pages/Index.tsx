@@ -145,8 +145,19 @@ const Index = () => {
         </section>
 
         {/* Footer */}
-        <footer className="text-center text-sm text-muted-foreground">
+        <footer className="text-center text-sm text-muted-foreground space-y-2">
           <p>Boa sorte! 🍀</p>
+          <p>
+            Desenvolvido por{" "}
+            <a
+              href="https://github.com/KauanBonatto"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:underline"
+            >
+              KauanBonatto
+            </a>
+          </p>
         </footer>
       </div>
 
