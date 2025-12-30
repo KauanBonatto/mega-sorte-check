@@ -76,6 +76,16 @@ export function GamesInput({ games, onAddGame, onRemoveGame, onClearGames }: Gam
       return;
     }
 
+    // Check for maximun 20 numbers
+    if (uniqueNumbers.length > 20) {
+      toast({
+        title: "Quantidade ultrapassada",
+        description: `Um jogo pode ter no máximo 20 números. Você inseriu ${uniqueNumbers.length}.`,
+        variant: "destructive",
+      });
+      return;
+    }
+
     onAddGame(uniqueNumbers.sort((a, b) => a - b));
     setInputValue("");
     toast({

@@ -35,6 +35,10 @@ export const useHistory = () => {
       results,
     };
 
+    if (history?.some(h => JSON.stringify(h.results) === JSON.stringify(results))) {
+      return;
+    }
+
     const newHistory = [newEntry, ...history];
     setHistory(newHistory);
     saveToStorage(newHistory);
