@@ -4,6 +4,8 @@ Aplicação web desenvolvida para verificar apostas da Mega da Virada 2025, comp
 
 O objetivo do projeto é oferecer uma interface simples, rápida e confiável para conferência de jogos, sem necessidade de cálculos manuais.
 
+<img width="1915" height="957" alt="Captura de Tela 2025-12-30 às 14 37 56" src="https://github.com/user-attachments/assets/d7bcdc5d-b183-4849-86a1-29b5ab67073c" />
+
 📌 Funcionalidades
 
 * Cadastro dos números sorteados da Mega da Virada 2025
@@ -33,5 +35,5 @@ Sempre confira os resultados nos canais oficiais.
 
 👨‍💻 Autor
 
-Desenvolvido por Kauan Bonatto
+Desenvolvido por Kauan Bonatto.
 Contribuições, sugestões e melhorias são bem-vindas.
