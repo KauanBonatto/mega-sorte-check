@@ -41,7 +41,7 @@ export function DrawnNumbersInput({ drawnNumbers, onSetDrawnNumbers }: DrawnNumb
       <div className="flex flex-col sm:flex-row gap-4">
         <Input
           type="text"
-          placeholder="Ex: 01, 15, 23, 34, 45, 60"
+          placeholder="Ex: 01 - 15 - 23 - 34 - 45 - 60"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={handleKeyDown}
@@ -62,7 +62,7 @@ export function DrawnNumbersInput({ drawnNumbers, onSetDrawnNumbers }: DrawnNumb
 
       {drawnNumbers.length === 0 && (
         <p className="text-muted-foreground text-sm text-center">
-          Insira os 6 números sorteados separados por vírgula ou espaço
+          Insira os 6 números sorteados separados por traço (ex: 01 - 15 - 23 - 34 - 45 - 60)
         </p>
       )}
     </div>
