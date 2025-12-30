@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { LotteryBall } from "./LotteryBall";
 import { Sparkles } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 interface DrawnNumbersInputProps {
   drawnNumbers: number[];
@@ -11,18 +12,75 @@ interface DrawnNumbersInputProps {
 
 export function DrawnNumbersInput({ drawnNumbers, onSetDrawnNumbers }: DrawnNumbersInputProps) {
   const [inputValue, setInputValue] = useState("");
+  const { toast } = useToast();
 
   const handleSubmit = () => {
-    const numbers = inputValue
-      .split(/[,\s]+/)
-      .map(n => parseInt(n.trim(), 10))
-      .filter(n => !isNaN(n) && n >= 1 && n <= 60)
-      .slice(0, 6);
-
-    if (numbers.length === 6) {
-      onSetDrawnNumbers(numbers.sort((a, b) => a - b));
-      setInputValue("");
+    if (!inputValue.trim()) {
+      toast({
+        title: "Campo vazio",
+        description: "Digite os 6 números sorteados.",
+        variant: "destructive",
+      });
+      return;
     }
+
+    // Parse all numbers from input
+    const rawNumbers = inputValue
+      .split(/[-,\s]+/)
+      .map(n => n.trim())
+      .filter(n => n !== "");
+
+    // Check for invalid entries (non-numbers)
+    const invalidEntries = rawNumbers.filter(n => isNaN(parseInt(n, 10)));
+    if (invalidEntries.length > 0) {
+      toast({
+        title: "Formato inválido",
+        description: "Use apenas números separados por traço. Ex: 01 - 15 - 23 - 34 - 45 - 60",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const parsedNumbers = rawNumbers.map(n => parseInt(n, 10));
+
+    // Check for numbers out of range (1-60)
+    const outOfRange = parsedNumbers.filter(n => n < 1 || n > 60);
+    if (outOfRange.length > 0) {
+      toast({
+        title: "Números fora do limite",
+        description: `Os números devem estar entre 01 e 60. Números inválidos: ${outOfRange.join(", ")}`,
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Check for duplicates
+    const uniqueNumbers = [...new Set(parsedNumbers)];
+    if (uniqueNumbers.length !== parsedNumbers.length) {
+      toast({
+        title: "Números duplicados",
+        description: "Cada número deve aparecer apenas uma vez.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Check for exactly 6 numbers
+    if (uniqueNumbers.length !== 6) {
+      toast({
+        title: "Quantidade incorreta",
+        description: `Insira exatamente 6 números. Você inseriu ${uniqueNumbers.length}.`,
+        variant: "destructive",
+      });
+      return;
+    }
+
+    onSetDrawnNumbers(uniqueNumbers.sort((a, b) => a - b));
+    setInputValue("");
+    toast({
+      title: "Números confirmados!",
+      description: "Os números sorteados foram registrados.",
+    });
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
